@@ -8,12 +8,6 @@ import Timeline from "@/components/Timeline";
 import ContactForm from "@/components/ContactForm";
 import CLIConsole from "@/components/CLIConsole";
 
-// Import Interactive Mock Dashboards
-import SingularMock from "@/components/mocks/SingularMock";
-import EcosystemMock from "@/components/mocks/EcosystemMock";
-import CampusMock from "@/components/mocks/CampusMock";
-import AeroMeshMock from "@/components/mocks/AeroMeshMock";
-
 export default function Home() {
   const [isCliOpen, setIsCliOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("bio");
@@ -70,7 +64,7 @@ export default function Home() {
       role: "Designed cooperative AI agent nodes to automate invoicing, bookkeeping, and receipt auditing for solopreneurs. Engineered an 'Invoice Sentinel' parser using LLM prompts to extract structured JSON data and flag tax anomalies.",
       github: "https://github.com/Dev-angPatil/Singular",
       liveUrl: "https://singular-ocr.onrender.com",
-      MockComponent: SingularMock,
+      mockupImg: "/screenshots/singular.png",
       impact: [
         "Automated bookkeeping pipeline processing 100+ simulated invoices per minute.",
         "Integrated Gemini LLM metadata extraction achieving 98% accuracy on anomalous receipts.",
@@ -84,7 +78,7 @@ export default function Home() {
       role: "Created a Socratic AI Coach that dynamically tailors lessons based on student quiz history. Engineered a real-time predator-prey dynamics simulator modeled on Lotka-Volterra differential equations.",
       github: "https://github.com/Dev-angPatil/EcosystemAI",
       liveUrl: "https://ecosystem-ai.vercel.app",
-      MockComponent: EcosystemMock,
+      mockupImg: "/screenshots/ecosystem.png",
       impact: [
         "Simulated biological predator-prey waves using client-side Euler differential integration.",
         "Integrated Aurora DSQL serverless SQL database to store student state concurrently with ACID safety.",
@@ -98,7 +92,7 @@ export default function Home() {
       role: "Programmed custom Rust/Anchor smart contracts to register on-chain student accounts, attendance, and scholarship transactions. Developed NFC mobile-to-desktop session login relay.",
       github: "https://github.com/Dev-angPatil/ChainCampus",
       liveUrl: "https://chain-campus.vercel.app",
-      MockComponent: CampusMock,
+      mockupImg: "/screenshots/campus.png",
       impact: [
         "Developed Anchor smart contracts on Solana for transparent, on-chain attendance verification.",
         "Built NFC login relay using Android SDK enabling card-tapped desktop session login.",
@@ -112,7 +106,7 @@ export default function Home() {
       role: "Engineered pathfinding algorithms utilizing Artificial Potential Fields (APF) and tangential vortex forces for drone deconfliction. Built real-time 3D telemetry visualization cockpits with React Three Fiber.",
       github: "https://github.com/Dev-angPatil/AirSwarm-3D",
       liveUrl: "https://aeromesh-3d.onrender.com",
-      MockComponent: AeroMeshMock,
+      mockupImg: "/screenshots/aeromesh.png",
       impact: [
         "Simulated 10+ autonomous drones with real-time collision-free path deconfliction.",
         "Broadcast telemetry at 20Hz over WebSockets to three-dimensional control HUDs.",
@@ -157,7 +151,7 @@ export default function Home() {
                     github={project.github}
                     liveUrl={project.liveUrl}
                     impact={project.impact}
-                    MockComponent={project.MockComponent}
+                    mockupImg={project.mockupImg}
                   />
                 </div>
               ))}

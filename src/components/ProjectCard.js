@@ -10,9 +10,9 @@ export default function ProjectCard({
   stack, 
   github, 
   liveUrl,
+  mockupImg,
   role, 
-  impact = [],
-  MockComponent
+  impact = []
 }) {
   const [activeTab, setActiveTab] = useState("overview"); // "overview" | "sandbox"
   const [deviceMode, setDeviceMode] = useState("desktop"); // "desktop" | "mobile"
@@ -47,7 +47,7 @@ export default function ProjectCard({
                 : "text-muted hover:text-fg"
             }`}
           >
-            Live Site
+            UI Preview
           </button>
         </div>
       </div>
@@ -92,7 +92,7 @@ export default function ProjectCard({
             </div>
           </div>
         ) : (
-          /* MOCK BROWSER VIEW (REACT CODE RUN) */
+          /* MOCK BROWSER VIEW (SCREENSHOT) */
           <div className="flex-grow flex flex-col min-h-[300px] border border-border-custom bg-bg rounded-sm overflow-hidden relative">
             {/* Browser Control Header */}
             <div className="flex items-center justify-between bg-card-bg border-b border-border-custom h-9 px-3 text-[10px] select-none">
@@ -147,26 +147,29 @@ export default function ProjectCard({
               </div>
             </div>
 
-            {/* Viewport container rendering interactive React Mock Component */}
-            <div className="flex-grow bg-bg flex items-center justify-center p-2 relative min-h-[210px] overflow-hidden">
+            {/* Viewport container rendering actual UI screenshot */}
+            <div className="flex-grow bg-[#0c0c0d] flex items-center justify-center p-2 relative min-h-[210px] overflow-hidden">
               <div 
-                className={`h-full transition-all duration-300 relative border border-border-custom/50 shadow-sm w-full ${
-                  deviceMode === "mobile" ? "max-w-[240px] max-h-[190px] overflow-y-auto text-[7px]" : ""
+                className={`h-full transition-all duration-300 relative border border-border-custom/50 shadow-sm w-full h-[210px] ${
+                  deviceMode === "mobile" ? "max-w-[150px] max-h-[210px]" : ""
                 }`}
               >
-                {MockComponent ? (
-                  <div key={reloadKey} className="w-full h-full p-2 bg-card-bg rounded-sm border border-border-custom/40">
-                    <MockComponent />
-                  </div>
+                {mockupImg ? (
+                  <img
+                    key={reloadKey}
+                    src={mockupImg}
+                    alt={`${title} Actual UI Mockup`}
+                    className="w-full h-full object-cover object-top select-none pointer-events-none rounded-sm border border-border-custom/40"
+                  />
                 ) : (
                   <div className="text-center text-xs text-muted font-bold py-12">
-                    [INTERFACE BOOTING...]
+                    [NO SCREENSHOT DEPLOYED]
                   </div>
                 )}
                 
                 {/* Dynamic live badge overlay */}
                 <div className="absolute bottom-1.5 right-1.5 bg-bg/95 border border-border-custom px-2 py-0.5 rounded-sm text-[8px] text-muted hover:text-fg transition-colors flex items-center space-x-1 select-none pointer-events-auto shadow-sm">
-                  <a href={liveUrl} target="_blank" rel="noreferrer" className="flex items-center space-x-1 font-mono uppercase">
+                  <a href={liveUrl} target="_blank" rel="noreferrer" className="flex items-center space-x-1 font-mono uppercase text-[7px]">
                     <span>Inspect Endpoint</span>
                     <ExternalLink size={7} />
                   </a>
@@ -198,7 +201,7 @@ export default function ProjectCard({
           >
             {activeTab === "overview" ? (
               <>
-                <span>Launch Live Site</span>
+                <span>Launch UI Preview</span>
                 <Play size={10} />
               </>
             ) : (
