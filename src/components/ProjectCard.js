@@ -11,7 +11,8 @@ export default function ProjectCard({
   github, 
   liveUrl,
   role, 
-  impact = []
+  impact = [],
+  MockComponent
 }) {
   const [activeTab, setActiveTab] = useState("overview"); // "overview" | "sandbox"
   const [deviceMode, setDeviceMode] = useState("desktop"); // "desktop" | "mobile"
@@ -91,7 +92,7 @@ export default function ProjectCard({
             </div>
           </div>
         ) : (
-          /* MOCK BROWSER VIEW (IFRAME) */
+          /* MOCK BROWSER VIEW (REACT CODE RUN) */
           <div className="flex-grow flex flex-col min-h-[300px] border border-border-custom bg-bg rounded-sm overflow-hidden relative">
             {/* Browser Control Header */}
             <div className="flex items-center justify-between bg-card-bg border-b border-border-custom h-9 px-3 text-[10px] select-none">
@@ -108,7 +109,7 @@ export default function ProjectCard({
                 <button 
                   onClick={() => setReloadKey((prev) => prev + 1)}
                   className="hover:text-fg active:scale-95 transition-transform cursor-pointer"
-                  title="Reload frame"
+                  title="Reload mockup"
                 >
                   <RotateCw size={8} />
                 </button>
@@ -146,25 +147,27 @@ export default function ProjectCard({
               </div>
             </div>
 
-            {/* Iframe Viewport Container */}
-            <div className="flex-grow bg-bg flex items-center justify-center p-2 relative h-[250px] overflow-hidden">
+            {/* Viewport container rendering interactive React Mock Component */}
+            <div className="flex-grow bg-bg flex items-center justify-center p-2 relative min-h-[210px] overflow-hidden">
               <div 
-                className={`h-full transition-all duration-300 relative border border-border-custom/50 shadow-sm ${
-                  deviceMode === "mobile" ? "w-[160px]" : "w-full"
+                className={`h-full transition-all duration-300 relative border border-border-custom/50 shadow-sm w-full ${
+                  deviceMode === "mobile" ? "max-w-[240px] max-h-[190px] overflow-y-auto text-[7px]" : ""
                 }`}
               >
-                <iframe
-                  key={reloadKey}
-                  src={liveUrl}
-                  title={`${title} live site`}
-                  className="w-full h-full border-none bg-[#fafafa]"
-                  sandbox="allow-scripts allow-same-origin allow-forms"
-                />
+                {MockComponent ? (
+                  <div key={reloadKey} className="w-full h-full p-2 bg-card-bg rounded-sm border border-border-custom/40">
+                    <MockComponent />
+                  </div>
+                ) : (
+                  <div className="text-center text-xs text-muted font-bold py-12">
+                    [INTERFACE BOOTING...]
+                  </div>
+                )}
                 
-                {/* Fallback Link Overlay */}
+                {/* Dynamic live badge overlay */}
                 <div className="absolute bottom-1.5 right-1.5 bg-bg/95 border border-border-custom px-2 py-0.5 rounded-sm text-[8px] text-muted hover:text-fg transition-colors flex items-center space-x-1 select-none pointer-events-auto shadow-sm">
                   <a href={liveUrl} target="_blank" rel="noreferrer" className="flex items-center space-x-1 font-mono uppercase">
-                    <span>Open Live Site</span>
+                    <span>Inspect Endpoint</span>
                     <ExternalLink size={7} />
                   </a>
                 </div>
