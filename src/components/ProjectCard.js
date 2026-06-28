@@ -18,6 +18,10 @@ export default function ProjectCard({
   const [deviceMode, setDeviceMode] = useState("desktop"); // "desktop" | "mobile"
   const [reloadKey, setReloadKey] = useState(0);
 
+  const cleanDisplayUrl = github 
+    ? github.replace("https://", "") 
+    : (liveUrl ? liveUrl.replace("https://", "") : "local://development");
+
   return (
     <div className="border border-border-custom bg-card-bg font-mono transition-all duration-200 hover:border-border-focus flex flex-col h-full">
       {/* Top Banner/Bar */}
@@ -47,7 +51,7 @@ export default function ProjectCard({
                 : "text-muted hover:text-fg"
             }`}
           >
-            UI Preview
+            UI Mockup
           </button>
         </div>
       </div>
@@ -105,7 +109,7 @@ export default function ProjectCard({
               
               {/* Address Input Bar */}
               <div className="flex-grow max-w-[200px] sm:max-w-md bg-bg border border-border-custom h-6 px-3 rounded-sm flex items-center justify-between text-muted text-[9px] truncate">
-                <span className="truncate">{liveUrl}</span>
+                <span className="truncate">{cleanDisplayUrl}</span>
                 <button 
                   onClick={() => setReloadKey((prev) => prev + 1)}
                   className="hover:text-fg active:scale-95 transition-transform cursor-pointer"
@@ -135,15 +139,17 @@ export default function ProjectCard({
                 >
                   <Smartphone size={10} />
                 </button>
-                <a
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-1 hover:text-accent transition-colors"
-                  title="Launch in New Tab"
-                >
-                  <ExternalLink size={10} />
-                </a>
+                {github && (
+                  <a
+                    href={github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-1 hover:text-accent transition-colors"
+                    title="Open GitHub Repository"
+                  >
+                    <ExternalLink size={10} />
+                  </a>
+                )}
               </div>
             </div>
 
@@ -166,14 +172,6 @@ export default function ProjectCard({
                     [NO SCREENSHOT DEPLOYED]
                   </div>
                 )}
-                
-                {/* Dynamic live badge overlay */}
-                <div className="absolute bottom-1.5 right-1.5 bg-bg/95 border border-border-custom px-2 py-0.5 rounded-sm text-[8px] text-muted hover:text-fg transition-colors flex items-center space-x-1 select-none pointer-events-auto shadow-sm">
-                  <a href={liveUrl} target="_blank" rel="noreferrer" className="flex items-center space-x-1 font-mono uppercase text-[7px]">
-                    <span>Inspect Endpoint</span>
-                    <ExternalLink size={7} />
-                  </a>
-                </div>
               </div>
             </div>
           </div>
@@ -201,7 +199,7 @@ export default function ProjectCard({
           >
             {activeTab === "overview" ? (
               <>
-                <span>Launch UI Preview</span>
+                <span>View UI Mockup</span>
                 <Play size={10} />
               </>
             ) : (
