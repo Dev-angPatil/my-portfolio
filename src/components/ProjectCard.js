@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play, FileText, Cpu, RotateCw, ExternalLink, Smartphone, Monitor } from "lucide-react";
+import { Play, FileText, Cpu, RotateCw, ExternalLink } from "lucide-react";
 import { Github } from "./Icons";
 
 export default function ProjectCard({ 
@@ -15,7 +15,6 @@ export default function ProjectCard({
   impact = []
 }) {
   const [activeTab, setActiveTab] = useState("overview"); // "overview" | "sandbox"
-  const [deviceMode, setDeviceMode] = useState("desktop"); // "desktop" | "mobile"
   const [reloadKey, setReloadKey] = useState(0);
 
   const cleanDisplayUrl = github 
@@ -119,26 +118,8 @@ export default function ProjectCard({
                 </button>
               </div>
 
-              {/* Viewport Toggles & Launch */}
+              {/* Viewport Actions (GitHub launch) */}
               <div className="flex items-center space-x-2 w-16 justify-end">
-                <button
-                  onClick={() => setDeviceMode("desktop")}
-                  className={`p-1 hover:text-fg transition-colors cursor-pointer ${
-                    deviceMode === "desktop" ? "text-accent" : "text-muted"
-                  }`}
-                  title="Desktop View"
-                >
-                  <Monitor size={10} />
-                </button>
-                <button
-                  onClick={() => setDeviceMode(deviceMode === "mobile" ? "desktop" : "mobile")}
-                  className={`p-1 hover:text-fg transition-colors cursor-pointer ${
-                    deviceMode === "mobile" ? "text-accent" : "text-muted"
-                  }`}
-                  title="Mobile View"
-                >
-                  <Smartphone size={10} />
-                </button>
                 {github && (
                   <a
                     href={github}
@@ -155,11 +136,7 @@ export default function ProjectCard({
 
             {/* Viewport container rendering actual UI screenshot */}
             <div className="flex-grow bg-[#0c0c0d] flex items-center justify-center p-2 relative min-h-[210px] overflow-hidden">
-              <div 
-                className={`h-full transition-all duration-300 relative border border-border-custom/50 shadow-sm w-full h-[210px] ${
-                  deviceMode === "mobile" ? "max-w-[150px] max-h-[210px]" : ""
-                }`}
-              >
+              <div className="h-full relative border border-border-custom/50 shadow-sm w-full h-[210px]">
                 {mockupImg ? (
                   <img
                     key={reloadKey}
