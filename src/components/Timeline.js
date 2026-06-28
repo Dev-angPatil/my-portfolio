@@ -45,11 +45,11 @@ export default function Timeline() {
       type: "milestone",
       icon: <Award size={14} />,
       date: "Early 2026",
-      title: "EcosystemAI & ChainCampus Deployments",
+      title: "Zero-to-Brand & ChainCampus Deployments",
       institution: "Academic & Hackathon Projects",
       details: [
         "ChainCampus: Built NFC mobile-to-desktop session login relay with Solana Rust/Anchor contracts.",
-        "EcosystemAI: Built biophysical simulator using serverless Aurora DSQL and Next.js App Router."
+        "Zero-to-Brand: Built Solarpunk Campaign Engine integrating Gemini 2.5 Flash visual parsing, Imagen 3.0, and Web Audio API."
       ]
     }
   ];

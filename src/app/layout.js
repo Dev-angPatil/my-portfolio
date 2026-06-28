@@ -18,7 +18,7 @@ export const viewport = {
 
 export const metadata = {
   title: "Devang Patil | Frontend Engineer & CS Student",
-  description: "Portfolio of Devang Patil, a B.Tech Computer Science student at VIT Pune. Showcasing Singular, EcosystemAI, and ChainCampus projects.",
+  description: "Portfolio of Devang Patil, a B.Tech Computer Science student at VIT Pune. Showcasing Singular, Zero-to-Brand, and ChainCampus projects.",
   keywords: ["Devang Patil", "Frontend Developer", "VIT Pune", "Software Engineer Portfolio", "React", "Next.js", "Solana", "AI Agents"],
   authors: [{ name: "Devang Patil", url: "https://github.com/Dev-angPatil" }],
 };

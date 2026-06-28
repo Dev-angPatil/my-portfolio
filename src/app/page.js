@@ -72,17 +72,17 @@ export default function Home() {
       ]
     },
     {
-      title: "EcosystemAI",
-      tagline: "Biophysical Digital Twin & Coach",
-      stack: ["Next.js", "Vercel", "Gemini API", "Aurora DSQL", "SVG Integrator"],
-      role: "Created a Socratic AI Coach that dynamically tailors lessons based on student quiz history. Engineered a real-time predator-prey dynamics simulator modeled on Lotka-Volterra differential equations.",
-      github: "https://github.com/Dev-angPatil/EcosystemAI",
-      liveUrl: "https://ecosystem-ai.vercel.app",
-      mockupImg: "/screenshots/ecosystem.png",
+      title: "Zero-to-Brand",
+      tagline: "Solarpunk Multi-Product Campaign Engine",
+      stack: ["Next.js", "Tailwind CSS", "Gemini 2.5 Flash", "Imagen 3.0", "Web Audio API", "JSON Database"],
+      role: "Architected an autonomous design co-pilot and marketing engine helping artisan makers turn raw craft photos into complete brand-aligned storytelling campaign storefronts with Gemini 2.5 Flash visual parsing and Imagen 3.0 image rendering.",
+      github: "https://github.com/Dev-angPatil/Zero-to-Brand",
+      liveUrl: "https://zero-to-brand.vercel.app",
+      mockupImg: "/screenshots/zerotobrand.png",
       impact: [
-        "Simulated biological predator-prey waves using client-side Euler differential integration.",
-        "Integrated Aurora DSQL serverless SQL database to store student state concurrently with ACID safety.",
-        "Implemented a Socratic AI Coach parsing student answers to tailor explanations dynamically."
+        "Built visual description parsers using Gemini 2.5 Flash to automatically extract textures, materials, and styles.",
+        "Engineered visual conditioning prompt refiners utilizing Imagen 3.0 to render high-fidelity brand campaign banners.",
+        "Created procedural sonic branding identifiers structuring chord scales and tempo plucks using the browser Web Audio API."
       ]
     },
     {
