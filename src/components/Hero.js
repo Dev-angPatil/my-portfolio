@@ -7,10 +7,10 @@ import { Github, Linkedin } from "./Icons";
 export default function Hero({ setIsCliOpen }) {
   const [typedText, setTypedText] = useState("");
   const specialties = [
-    "Cooperative AI Agent Nodes",
-    "Biophysical Lotka-Volterra Twins",
-    "On-chain Rust & Solana Programs",
-    "Performant Next.js App Architectures"
+    "Multi-Agent AI Workflows",
+    "Responsive Full-Stack Architectures",
+    "Linux Kernel & Shell Scripting",
+    "Distributed Systems & WebSockets"
   ];
   const [specialtyIndex, setSpecialtyIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
