@@ -232,7 +232,7 @@ export default function ContactForm() {
 
                 {/* Resume Download Action */}
                 <a
-                  href="/resume.pdf"
+                  href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/resume.pdf`}
                   download="Devang_Patil_Resume.pdf"
                   className="w-full flex items-center justify-between border border-border-custom bg-bg px-3 py-2 text-fg hover:border-border-focus hover:text-accent transition-all text-left font-mono active:scale-99"
                 >

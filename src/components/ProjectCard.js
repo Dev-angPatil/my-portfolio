@@ -140,7 +140,7 @@ export default function ProjectCard({
                 {mockupImg ? (
                   <img
                     key={reloadKey}
-                    src={mockupImg}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${mockupImg}`}
                     alt={`${title} Actual UI Mockup`}
                     className="w-full h-full object-cover object-top select-none pointer-events-none rounded-sm border border-border-custom/40"
                   />
