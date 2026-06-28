@@ -1,8 +1,18 @@
 "use client";
 
+import { useRef } from "react";
 import { Calendar, GraduationCap, Award, Briefcase } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Timeline() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center"]
+  });
+
+  const scaleY = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
+
   const timelineItems = [
     {
       id: 1,
@@ -55,25 +65,51 @@ export default function Timeline() {
   ];
 
   return (
-    <section id="timeline" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 border-x border-border-custom bg-bg">
-      <div className="space-y-8 font-mono scroll-reveal">
+    <section 
+      ref={containerRef}
+      id="timeline" 
+      className="mx-auto max-w-5xl px-4 py-16 sm:px-6 border-x border-border-custom bg-bg overflow-hidden"
+    >
+      <div className="space-y-8 font-mono">
         {/* Section Header */}
-        <div className="flex items-center space-x-3 border-b border-border-custom pb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center space-x-3 border-b border-border-custom pb-4"
+        >
           <Calendar size={18} className="text-accent" />
           <h2 className="text-lg font-bold uppercase tracking-wider text-fg">Resume & Timeline</h2>
-        </div>
+        </motion.div>
 
         {/* Timeline Path */}
-        <div className="relative border-l border-border-custom ml-4 pl-6 space-y-10 py-2">
-          {timelineItems.map((item) => (
-            <div key={item.id} className="relative group">
+        <div className="relative ml-4 pl-6 space-y-10 py-2">
+          {/* Static Background Line */}
+          <div className="absolute left-[15.5px] top-2 bottom-2 w-[1px] bg-border-custom" />
+          
+          {/* Dynamic Scroll-Drawn Active Line */}
+          <motion.div 
+            style={{ scaleY, originY: 0 }}
+            className="absolute left-[15.5px] top-2 bottom-2 w-[1px] bg-accent"
+          />
+
+          {timelineItems.map((item, index) => (
+            <motion.div 
+              key={item.id} 
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.12 }}
+              className="relative group"
+            >
               {/* Timeline Dot Indicator */}
-              <span className="absolute -left-[31px] top-1 flex h-4 w-4 items-center justify-center rounded-sm border border-border-focus bg-bg text-fg group-hover:border-accent group-hover:text-accent transition-colors">
+              <span className="absolute -left-[31px] top-1 flex h-4 w-4 items-center justify-center rounded-sm border border-border-focus bg-bg text-fg group-hover:border-accent group-hover:text-accent transition-colors z-10">
                 {item.icon}
               </span>
 
               {/* Card Container */}
-              <div className="border border-border-custom bg-card-bg p-4 rounded-sm hover:border-border-focus transition-all">
+              <div className="border border-border-custom bg-card-bg p-4 rounded-sm hover:border-border-focus transition-all group-hover:shadow-[0_0_15px_rgba(234,88,12,0.03)]">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border-custom/50 pb-2 mb-3">
                   <span className="text-xs text-accent font-bold tracking-widest">{item.date}</span>
                   <span className="text-[10px] bg-bg px-2 py-0.5 border border-border-custom text-muted font-bold uppercase rounded-sm">
@@ -93,7 +129,7 @@ export default function Timeline() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

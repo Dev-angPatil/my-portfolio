@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out -b gh-pages"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -24,6 +26,7 @@
     "@testing-library/react": "^16.3.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "gh-pages": "^6.3.0",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "tailwindcss": "^4"

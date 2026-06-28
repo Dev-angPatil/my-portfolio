@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, Copy, Check, Download, Mail } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -53,17 +54,29 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 border-x border-b border-border-custom bg-bg">
-      <div className="space-y-8 font-mono scroll-reveal">
+    <section id="contact" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 border-x border-b border-border-custom bg-bg overflow-hidden">
+      <div className="space-y-8 font-mono">
         {/* Section Header */}
-        <div className="flex items-center space-x-3 border-b border-border-custom pb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center space-x-3 border-b border-border-custom pb-4"
+        >
           <Mail size={18} className="text-accent" />
           <h2 className="text-lg font-bold uppercase tracking-wider text-fg">Establish Connection</h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           {/* Left Column: Form / Console Output */}
-          <div className="md:col-span-3 border border-border-custom bg-card-bg p-5 rounded-sm relative overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="md:col-span-3 border border-border-custom bg-card-bg p-5 rounded-sm relative overflow-hidden"
+          >
             {formState === "idle" ? (
               /* ACTIVE FORM */
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,7 +119,7 @@ export default function ContactForm() {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center space-x-2 border border-border-focus bg-fg text-bg hover:bg-bg hover:text-fg py-2.5 px-4 text-xs font-bold transition-all cursor-pointer"
+                  className="w-full flex items-center justify-center space-x-2 border border-border-focus bg-fg text-bg hover:bg-bg hover:text-fg py-2.5 px-4 text-xs font-bold transition-all cursor-pointer active:scale-98"
                 >
                   <Send size={12} />
                   <span>TRANSMIT CONNECTION PAYLOAD</span>
@@ -190,10 +203,16 @@ export default function ContactForm() {
                 )}
               </div>
             )}
-          </div>
+          </motion.div>
 
           {/* Right Column: Direct Info Links */}
-          <div className="md:col-span-2 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="md:col-span-2 space-y-4"
+          >
             {/* Quick Actions Grid */}
             <div className="border border-border-custom bg-card-bg p-4 rounded-sm space-y-4">
               <div className="text-[10px] text-muted font-bold tracking-widest uppercase">DIRECT CONTACTS:</div>
@@ -202,7 +221,7 @@ export default function ContactForm() {
                 {/* Copy Email Action */}
                 <button
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-between border border-border-custom bg-bg px-3 py-2 text-fg hover:border-border-focus hover:text-accent transition-all cursor-pointer text-left font-mono"
+                  className="w-full flex items-center justify-between border border-border-custom bg-bg px-3 py-2 text-fg hover:border-border-focus hover:text-accent transition-all cursor-pointer text-left font-mono active:scale-99"
                 >
                   <div className="flex items-center space-x-2">
                     <Mail size={14} />
@@ -215,7 +234,7 @@ export default function ContactForm() {
                 <a
                   href="/resume.pdf"
                   download="Devang_Patil_Resume.pdf"
-                  className="w-full flex items-center justify-between border border-border-custom bg-bg px-3 py-2 text-fg hover:border-border-focus hover:text-accent transition-all text-left font-mono"
+                  className="w-full flex items-center justify-between border border-border-custom bg-bg px-3 py-2 text-fg hover:border-border-focus hover:text-accent transition-all text-left font-mono active:scale-99"
                 >
                   <div className="flex items-center space-x-2">
                     <Download size={14} />
@@ -231,7 +250,7 @@ export default function ContactForm() {
               <span className="font-mono text-accent font-bold uppercase tracking-wider block mb-1">Recruiter Notice:</span>
               I am actively seeking B.Tech B-term / Summer frontend internships starting in 2026/2027. Available for remote roles or hybrid roles in Pune/Bangalore.
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

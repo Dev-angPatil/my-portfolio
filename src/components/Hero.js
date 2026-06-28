@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Terminal, Mail, ArrowRight } from "lucide-react";
 import { Github, Linkedin } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function Hero({ setIsCliOpen }) {
   const [typedText, setTypedText] = useState("");
@@ -41,7 +42,12 @@ export default function Hero({ setIsCliOpen }) {
 
   return (
     <section id="bio" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-24 border-x border-border-custom bg-bg">
-      <div className="border border-border-custom bg-card-bg p-6 md:p-8 font-mono relative overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.99 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="border border-border-custom bg-card-bg p-6 md:p-8 font-mono relative overflow-hidden"
+      >
         {/* Terminal Header Decorator */}
         <div className="absolute top-0 left-0 right-0 h-8 border-b border-border-custom bg-bg flex items-center justify-between px-4">
           <div className="flex items-center space-x-2">
@@ -55,7 +61,12 @@ export default function Hero({ setIsCliOpen }) {
 
         <div className="mt-6 space-y-6">
           {/* Main Info */}
-          <div className="space-y-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="space-y-2"
+          >
             <div className="text-xs text-accent font-bold tracking-widest">[B.TECH CS / VIT PUNE]</div>
             <h1 className="text-3xl font-extrabold tracking-tight text-fg sm:text-5xl">
               DEVANG PATIL
@@ -63,25 +74,40 @@ export default function Hero({ setIsCliOpen }) {
             <p className="text-sm font-semibold text-muted">
               Timeline: 2025 — 2029 • Pune, MH
             </p>
-          </div>
+          </motion.div>
 
           {/* Typing Focus */}
-          <div className="h-12 border-l-2 border-accent pl-4 flex items-center bg-bg/50">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="h-12 border-l-2 border-accent pl-4 flex items-center bg-bg/50"
+          >
             <div>
               <span className="text-xs text-muted block uppercase tracking-wider text-[10px]">Active Focus:</span>
               <span className="text-sm sm:text-md text-fg font-bold typing-caret">
                 {typedText}
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bio Text */}
-          <p className="text-sm text-muted leading-relaxed max-w-2xl font-sans">
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-sm text-muted leading-relaxed max-w-2xl font-sans"
+          >
             I am a B.Tech Computer Science student at Vishwakarma Institute of Technology, Pune. I build high-fidelity frontend systems that bridge the gap between complex mathematical models, autonomous AI agent layers, and web interfaces.
-          </p>
+          </motion.p>
 
           {/* Stats Grid */}
-          <div className="border border-border-custom bg-bg p-4 rounded-sm">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="border border-border-custom bg-bg p-4 rounded-sm"
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs">
               <div className="flex justify-between border-b border-border-custom/50 py-1">
                 <span className="text-muted">UNIVERSITY:</span>
@@ -112,10 +138,15 @@ export default function Hero({ setIsCliOpen }) {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-3 pt-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-wrap gap-3 pt-2"
+          >
             <button
               onClick={() => {
                 const element = document.getElementById("projects");
@@ -129,7 +160,7 @@ export default function Hero({ setIsCliOpen }) {
                   });
                 }
               }}
-              className="flex items-center space-x-2 border border-border-focus bg-fg px-4 py-2 text-xs text-bg hover:bg-bg hover:text-fg transition-all cursor-pointer font-bold"
+              className="flex items-center space-x-2 border border-border-focus bg-fg px-4 py-2 text-xs text-bg hover:bg-bg hover:text-fg transition-all cursor-pointer font-bold active:scale-98"
             >
               <span>Explore Projects</span>
               <ArrowRight size={14} />
@@ -137,48 +168,47 @@ export default function Hero({ setIsCliOpen }) {
 
             <button
               onClick={() => setIsCliOpen(true)}
-              className="flex items-center space-x-2 border border-border-custom bg-card-bg px-4 py-2 text-xs hover:border-border-focus text-fg hover:text-accent transition-all cursor-pointer"
+              className="flex items-center space-x-2 border border-border-custom bg-card-bg px-4 py-2 text-xs hover:border-border-focus text-fg hover:text-accent transition-all cursor-pointer active:scale-98"
             >
               <Terminal size={14} />
-              <span>Launch CLI Console</span>
+              <span>Launch Sandbox CLI [Ctrl+`]</span>
             </button>
+          </motion.div>
 
-            <div className="flex items-center space-x-2 sm:ml-auto pt-2 sm:pt-0">
-              <a
-                href="https://github.com/Dev-angPatil"
-                target="_blank"
+          {/* Socials Banner */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="border-t border-border-custom/50 pt-4 flex items-center justify-between text-xs text-muted"
+          >
+            <div className="flex items-center space-x-4">
+              <span>SOCIALS:</span>
+              <a 
+                href="https://github.com/Dev-angPatil" 
+                target="_blank" 
                 rel="noreferrer"
-                className="border border-border-custom bg-card-bg p-2 hover:border-border-focus text-muted hover:text-fg transition-all"
-                aria-label="GitHub profile"
+                className="hover:text-fg transition-colors p-1"
+                title="GitHub profile"
               >
                 <Github size={16} />
               </a>
-              <a
-                href="https://www.linkedin.com/in/devang-patil-b7556b350/"
-                target="_blank"
+              <a 
+                href="https://www.linkedin.com/in/devang-patil-b7556b350/" 
+                target="_blank" 
                 rel="noreferrer"
-                className="border border-border-custom bg-card-bg p-2 hover:border-border-focus text-muted hover:text-fg transition-all"
-                aria-label="LinkedIn profile"
+                className="hover:text-fg transition-colors p-1"
+                title="LinkedIn profile"
               >
                 <Linkedin size={16} />
               </a>
-              <a
-                href="mailto:officialdevangpatil@gmail.com"
-                className="border border-border-custom bg-card-bg p-2 hover:border-border-focus text-muted hover:text-fg transition-all"
-                aria-label="Email Devang"
-              >
-                <Mail size={16} />
-              </a>
             </div>
-          </div>
+            <div className="text-[10px] text-neutral-600 hidden sm:block">
+              SECURE_TLS // AES_256_GCM
+            </div>
+          </motion.div>
         </div>
-
-        {/* Keyboard shortcut footnote */}
-        <div className="mt-6 border-t border-border-custom/50 pt-4 text-[10px] text-muted flex items-center justify-between">
-          <span>SHORTCUT: PRESS <kbd className="border border-border-custom bg-bg px-1 py-0.5 rounded-sm font-bold text-fg">`</kbd> (BACKTICK) ON KEYBOARD TO TOGGLE CLI MODE ANYTIME</span>
-          <span className="hidden sm:inline">LOC: Pune, India</span>
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

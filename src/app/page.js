@@ -7,6 +7,7 @@ import ProjectCard from "@/components/ProjectCard";
 import Timeline from "@/components/Timeline";
 import ContactForm from "@/components/ContactForm";
 import CLIConsole from "@/components/CLIConsole";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [isCliOpen, setIsCliOpen] = useState(false);
@@ -131,18 +132,31 @@ export default function Home() {
         <Hero setIsCliOpen={setIsCliOpen} />
 
         {/* Projects Showcase Area */}
-        <section id="projects" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 border-x border-border-custom bg-bg">
-          <div className="space-y-8 font-mono scroll-reveal">
+        <section id="projects" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 border-x border-border-custom bg-bg overflow-hidden">
+          <div className="space-y-8 font-mono">
             {/* Section Header */}
-            <div className="flex items-center space-x-3 border-b border-border-custom pb-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center space-x-3 border-b border-border-custom pb-4"
+            >
               <span className="text-fg font-bold">●</span>
               <h2 className="text-lg font-bold uppercase tracking-wider text-fg">Engineering Showcase</h2>
-            </div>
+            </motion.div>
 
             {/* Projects Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projectsData.map((project, index) => (
-                <div key={index} className="h-full">
+                <motion.div 
+                  key={index} 
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  className="h-full"
+                >
                   <ProjectCard 
                     title={project.title}
                     tagline={project.tagline}
@@ -153,7 +167,7 @@ export default function Home() {
                     impact={project.impact}
                     mockupImg={project.mockupImg}
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
