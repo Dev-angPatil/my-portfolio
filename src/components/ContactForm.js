@@ -248,7 +248,7 @@ export default function ContactForm() {
             {/* Quick Card info */}
             <div className="border border-border-custom bg-card-bg p-4 rounded-sm text-[10px] text-muted leading-relaxed font-sans">
               <span className="font-mono text-accent font-bold uppercase tracking-wider block mb-1">Recruiter Notice:</span>
-              I am actively seeking B.Tech B-term / Summer frontend internships starting in 2026/2027. Available for remote roles or hybrid roles in Pune/Bangalore.
+              I am actively seeking B.Tech B-term / Summer frontend internships starting in 2026/2027. Available for remote-only roles.
             </div>
           </motion.div>
         </div>
